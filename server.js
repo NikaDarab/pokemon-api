@@ -1,13 +1,13 @@
 //imports
+require("dotenv").config();
 const express = require("express");
 const morgan = require("morgan");
-
+console.log(process.env.API_TOKEN);
 //make an instance of the express
 const app = express();
 
 //using the morgan middleware
 app.use(morgan("dev"));
-
 //array of valid types
 const validTypes = [
   `Bug`,
@@ -34,7 +34,13 @@ function handleGetTypes(req, res) {
   res.json(validTypes);
 }
 
+function handleGetPokemon(req, res) {
+  res.send("Hello, Pokemon!");
+}
+
 app.get("/types", handleGetTypes);
+app.get("/pokemon", handleGetPokemon);
+
 const PORT = 8000;
 //listening to the port
 app.listen(PORT, () => {

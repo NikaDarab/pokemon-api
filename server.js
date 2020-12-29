@@ -8,10 +8,33 @@ const app = express();
 //using the morgan middleware
 app.use(morgan("dev"));
 
-//post a message
-app.use((req, res) => {
-  res.send("Pokemon go!");
-});
+//array of valid types
+const validTypes = [
+  `Bug`,
+  `Dark`,
+  `Dragon`,
+  `Electric`,
+  `Fairy`,
+  `Fighting`,
+  `Fire`,
+  `Flying`,
+  `Ghost`,
+  `Grass`,
+  `Ground`,
+  `Ice`,
+  `Normal`,
+  `Poison`,
+  `Psychic`,
+  `Rock`,
+  `Steel`,
+  `Water`,
+];
+//create an endpoint
+function handleGetTypes(req, res) {
+  res.json(validTypes);
+}
+
+app.get("/types", handleGetTypes);
 const PORT = 8000;
 //listening to the port
 app.listen(PORT, () => {

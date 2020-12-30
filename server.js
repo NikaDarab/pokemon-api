@@ -4,6 +4,8 @@
 require("dotenv").config();
 const express = require("express");
 const morgan = require("morgan");
+const helmet = require("helmet");
+const cors = require("cors");
 const POKEDEX = require("./pokedex.json");
 console.log(process.env.API_TOKEN);
 //make an instance of the express
@@ -11,6 +13,8 @@ const app = express();
 
 //using the morgan middleware
 app.use(morgan("dev"));
+app.use(helmet());
+app.use(cors());
 //validate middleware
 app.use(function valitedateBearerToken(req, res, next) {
   const apiToken = process.env.API_TOKEN;
